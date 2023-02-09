@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
-
+import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
-const Login = () => {
+const Register = ({setIsLogin, setUserId}) => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
 
@@ -13,16 +14,19 @@ const Login = () => {
         await createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                console.log(user);
+                if (user && user.reloadUserInfo) {
+                    localStorage.setItem('token', user.accessToken);
+                    localStorage.setItem('localId', user.reloadUserInfo.localId);
+                    setIsLogin(true)
+                    setUserId(user.reloadUserInfo.localId)
+                    navigate("/");
+                }
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 console.log(errorCode, errorMessage);
-                // ..
             });
-
-
     }
 
     return (
@@ -34,7 +38,7 @@ const Login = () => {
                 <TextField value={password} onChange={(e) => setPassword(e.target.value)} label="Password" type="password" variant="standard" />
                 <br />
                 <br />
-                <Button onClick={() => onSubmit} variant="outlined">Registration</Button>
+                <Button onClick={() => onSubmit()} variant="outlined">Registration</Button>
             </div>
 
         </div>
@@ -42,4 +46,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Register

@@ -13,7 +13,7 @@ const App = () => {
       <Routes>
         {isLogin && <Route path="/" element={<Files userId={userId}  />} />}
         {!isLogin && <Route path="/" element={<Login  setIsLogin={setIsLogin} setUserId={setUserId} />} />}
-        {/* {!isLogin && <Route path="/register" element={<Register  setIsLogin={setIsLogin} setUserId={setUserId} />} />} */}
+        {!isLogin && <Route path="/register" element={<Register  setIsLogin={setIsLogin} setUserId={setUserId} />} />}
       </Routes>
       </div>
 

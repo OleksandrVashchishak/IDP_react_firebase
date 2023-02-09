@@ -2,11 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
-import { IUser } from '../../models/IUser';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-
-
 
 const Login = ({setIsLogin, setUserId}) => {
     const navigate = useNavigate();

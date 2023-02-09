@@ -32,7 +32,7 @@ const LoginMenu = ({ isLogin, setIsLogin }: IProps) => {
 
             {!isLogin && <>
                 <Button sx={{ my: 2, color: 'white' }} >
-                    <Link to="/login">Login</Link>
+                    <Link to="/">Login</Link>
                 </Button>
                 <Button sx={{ my: 2, color: 'white' }} >
                     <Link to="/register">Registration</Link>
