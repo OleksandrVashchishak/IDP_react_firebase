@@ -7,7 +7,7 @@ const App = () => {
   const [userId, setUserId] = React.useState<string | null>(localStorage.getItem('localId') ? localStorage.getItem('localId') : 'false')
 
   return (
-    <div>
+    <div data-testid="app-root">
       <TopBar isLogin={isLogin} setIsLogin={setIsLogin}/>
       <div className="container">
       <Routes>

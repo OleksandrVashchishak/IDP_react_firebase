@@ -42,7 +42,7 @@ const Files = ({ userId }: IProps) => {
         getFiles()
     }, [userId])
     return (
-        <div>
+        <div data-testid="files-root">
             <h2 >Download file </h2>
             <input type="file" onChange={(e) => hundleFile(e)} />
             <div className='percents' >
